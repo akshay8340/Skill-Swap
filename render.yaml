@@ -1,0 +1,22 @@
+# Render Blueprint: one web service that serves the API and the website.
+# Render dashboard -> New -> Blueprint -> pick this repository.
+# You only need to paste MONGO_URI and ADMIN_EMAILS (your own email, to become the first administrator).
+services:
+  - type: web
+    name: skillswap
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI
+        sync: false
+      - key: ADMIN_EMAILS
+        sync: false
