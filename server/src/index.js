@@ -129,7 +129,16 @@ const PORT = process.env.PORT || 5000;
 try {
   await mongoose.connect(MONGO_URI, { serverSelectionTimeoutMS: 10000 });
 } catch (e) {
-  fail(`Could not connect to MongoDB (${e.message}). Check MONGO_URI and, on Atlas, the Network Access allow-list.`);
+  const m = String(e.message);
+  let hint = 'Check MONGO_URI and, on Atlas, the Network Access allow-list.';
+  if (/bad auth|Authentication failed/i.test(m)) {
+    hint = 'The database username or password in MONGO_URI is wrong. On Atlas open Database Access, check the username (it is case-sensitive), set a new password, then update MONGO_URI.';
+  } else if (/ENOTFOUND|querySrv|EBADNAME/i.test(m)) {
+    hint = 'The cluster address in MONGO_URI was not found. Copy the connection string again from Atlas (Connect, then Drivers).';
+  } else if (/timed out|ReplicaSetNoPrimary|Server selection/i.test(m)) {
+    hint = 'The database could not be reached. On Atlas open Network Access and allow 0.0.0.0/0.';
+  }
+  fail(`Could not connect to MongoDB (${m}). ${hint}`);
 }
 console.log('MongoDB connected');
 

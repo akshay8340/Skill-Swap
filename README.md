@@ -3,6 +3,8 @@
 Students learn from each other: subjects like DSA and React, and also spoken English, Hindi, guitar, swimming or gymnastics. You can teach, learn, or both. Swapping is never required.
 Built with the **MERN** stack (MongoDB, Express, React, Node.js). One server serves both the API and the website, so it deploys as a single service.
 
+> **Step-by-step guide (local setup, database, GitHub, going live, where to change what): [SETUP_AND_DEPLOY.md](SETUP_AND_DEPLOY.md)**
+
 ## Features
 
 **For students**
