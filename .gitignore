@@ -3,14 +3,8 @@ dist/
 .env
 *.log
 .DS_Store
-
-docs/_build/node_modules/
-docs/_build/out/
-docs/_build/shots/
-
-# documentation build workspace (report/PPT generators, screenshots)
-docs/_build/
 ~$*
 *.tmp
-# college report/PPT: only for submission, not part of the project repo
+
+# college report/PPT workspace: only for submission, not part of the project repo
 docs/
